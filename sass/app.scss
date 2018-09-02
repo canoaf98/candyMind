@@ -1,0 +1,16 @@
+
+@import "utils.scss";
+
+section{
+  display: none;
+}
+
+#carga{
+  display: block;
+}
+
+#index{
+  max-width: 600px;
+  max-height: 600px;
+  background: url('../assets/menu/Fondo_menu.gif');
+}
