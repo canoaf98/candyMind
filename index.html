@@ -6,10 +6,22 @@
   </head>
   <body>
     <section id="carga"><!-- Carga -->
-      <img id="gif" alt="full screen background image" src="Recursos/Cargando.gif"/>
+      <img id="gif" alt="full screen background image" src="assets/Cargando.gif"/>
     </section>
     <section id="index"><!-- index -->
-
+      <div class=""><!-- contenedor fondo -->
+        <div class=""><!-- contedor de botones -->
+          <div class=""><!-- boton jugar -->
+            <a href="#" src="assets/Menu/Empezar_boton.png"></a>
+          </div>
+          <div class=""><!-- boton instrucciones -->
+            <a href="#" src="assets/Menu/Instrucciones_boton.png"></a>
+          </div>
+          <div class=""><!-- boton créditos -->
+            <a href="#" src="assets/Menu/Creditos_boton.png"></a>
+          </div>
+        </div>
+      </div>
     </section>
     <main> <!-- Juego -->
 
@@ -20,5 +32,13 @@
     <section id="creditos"><!-- Créditos -->
 
     </section>
+    <script type="text/javascript">
+      window.onload = function(){
+        setTimeout(function(){
+          document.getElementById("carga").style.display = "none";
+          document.getElementById("index").style.display = "block";
+        }, 5000);
+      }
+    </script>
   </body>
 </html>

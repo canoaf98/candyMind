@@ -1,2 +1,4 @@
 sass/*
 .git/*
+config/*
+.sass-cache/*
