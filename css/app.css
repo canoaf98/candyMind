@@ -5,4 +5,4 @@ section { display: none; }
 #carga { display: block; }
 
 /* line 12, ../sass/app.scss */
-#index { max-width: 600px; max-height: 600px; background: url("../assets/menu/Fondo_menu.gif"); }
+#index { background-size: 300px 300px; background: url("../assets/menu/Fondo_menu.gif"); }
