@@ -12,22 +12,27 @@
       <img alt="full screen background image" src="assets/Cargando.gif"/>
     </section>
     <section id="index"><!-- index -->
-      <div class="container-fluid" id="index"><!-- contenedor fondo -->
-        <div class="row btn-container"><!-- contedor de botones -->
-          <div class="col-12"><!-- boton jugar -->
-            <a href="" onclick="displaySection('juego')">
-              <img src="assets/menu/Empezar_boton.png" alt="">
-            </a>
-          </div>
-          <div class="col-12"><!-- boton instrucciones -->
-            <a href="" onclick="displaySection('instrucciones')">
-              <img src="assets/menu/Instrucciones_boton.png" alt="">
-            </a>
-          </div>
-          <div class="col-12"><!-- boton créditos -->
-            <a href="" onclick="displaySection('creditos')">
-              <img src="assets/menu/Creditos_boton.png" alt="">
-            </a>
+      <div class="app-container">
+        <div class="image-backgound">
+          <img class="img-responsive" id="image-background" src="assets/menu/Fondo_menu.gif" alt="" style="width: 102.5%; height: 102.5vh; max-width: 150vh; max-height: 150vh; overflow: hidden;">
+        </div>
+        <div class="container-fluid"><!-- contenedor fondo -->
+          <div class="row btn-container"><!-- contedor de botones -->
+            <div class="button-play-div"><!-- boton jugar -->
+              <a href="" onclick="displaySection('juego')" class="ml-25">
+                <img src="assets/menu/Empezar_boton.png" alt="" style="width: 50%; height: 100%; overflow: hidden;">
+              </a>
+            </div>
+            <div class="button-play-div"><!-- boton jugar -->
+              <a href="" onclick="displaySection('instrucciones')" class="ml-25">
+                <img src="assets/menu/Instrucciones_boton.png" alt="" style="width: 50%; height: 100%; overflow: hidden;">
+              </a>
+            </div>
+            <div class="button-play-div"><!-- boton jugar -->
+              <a href="" onclick="displaySection('creditos')" class="ml-25">
+                <img src="assets/menu/Creditos_boton.png" alt="" style="width: 50%; height: 100%; overflow: hidden;">
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -10,6 +10,28 @@ section{
 }
 
 #index{
-  background-size: 300px 300px;
-  background: url('../assets/menu/Fondo_menu.gif');
+
+}
+.app-container{
+  position: relative;
+}
+
+.img-backgound{
+  position: relative;
+  z-index: 50;
+}
+
+.btn-container{
+
+  top: 50%;
+  position: absolute;
+  z-index: 100;
+}
+
+.button-play-div{
+
+}
+
+.ml-25{
+  margin-left: 25%;
 }

@@ -4,5 +4,14 @@ section { display: none; }
 /* line 8, ../sass/app.scss */
 #carga { display: block; }
 
-/* line 12, ../sass/app.scss */
-#index { background-size: 300px 300px; background: url("../assets/menu/Fondo_menu.gif"); }
+/* line 15, ../sass/app.scss */
+.app-container { position: relative; }
+
+/* line 19, ../sass/app.scss */
+.img-backgound { position: relative; z-index: 50; }
+
+/* line 24, ../sass/app.scss */
+.btn-container { top: 50%; position: absolute; z-index: 100; }
+
+/* line 35, ../sass/app.scss */
+.ml-25 { margin-left: 25%; }
