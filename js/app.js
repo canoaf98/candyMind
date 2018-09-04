@@ -1,5 +1,6 @@
 var sections;
-
+var width;
+var height;
 
 window.onload = init;//Se llama la función de carga
 
@@ -7,8 +8,23 @@ window.onload = init;//Se llama la función de carga
 * Función de carga al iniciar la ventana
 **/
 function init(){
+  width = document.documentElement.clientWidth;
+  height = document.documentElement.clientHeight;
+  window.addEventListener("scroll", preventMotion, false);
+  window.addEventListener("touchmove", preventMotion, false);
+  setTimeout(loadSection, 5000);
+  phaserGame();
+}
 
-  setTimeout(loadSection, 50);
+/**
+* función para prevenir eventos de scroll y de zoom
+* @param event: evento a
+**/
+function preventMotion(event)
+{
+    window.scrollTo(0, 0);
+    event.preventDefault();
+    event.stopPropagation();
 }
 
 /**
@@ -34,5 +50,25 @@ function displaySection(sectionName){
     else{
       sections[i].style.display = "none";
     }
+  }
+}
+
+function phaserGame(){
+  var game = Phaser.Game(width, height, Phaser.CANVAS, 'canvas', {preload: preload, create: create, update: update, render: render});
+
+  function preload(){
+
+  }
+
+  function create(){
+
+  }
+
+  function update(){
+
+  }
+
+  function render(){
+
   }
 }

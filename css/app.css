@@ -1,17 +1,23 @@
-/* line 4, ../sass/app.scss */
-section { display: none; }
+/* line 3, ../sass/app.scss */
+html { overflow: hidden; }
 
 /* line 8, ../sass/app.scss */
+body { overflow: hidden; position: relative; margin: 0; padding: 0; }
+
+/* line 16, ../sass/app.scss */
+section { display: none; }
+
+/* line 20, ../sass/app.scss */
 #carga { display: block; }
 
-/* line 15, ../sass/app.scss */
+/* line 27, ../sass/app.scss */
 .app-container { position: relative; }
 
-/* line 19, ../sass/app.scss */
+/* line 31, ../sass/app.scss */
 .img-backgound { position: relative; z-index: 50; }
 
-/* line 24, ../sass/app.scss */
+/* line 36, ../sass/app.scss */
 .btn-container { top: 50%; position: absolute; z-index: 100; }
 
-/* line 35, ../sass/app.scss */
+/* line 47, ../sass/app.scss */
 .ml-25 { margin-left: 25%; }
