@@ -93,11 +93,11 @@ function phaserGame(){
 
       // Display the background
       back = game.add.image(0, -400, 'background');
-      back.scale.set(2);
+      back.scale.set(1);
       back.smoothed = false;
       // Display the bird at the position x=100 and y=width/2
       alien = game.add.sprite(10, 10, 'alien', 5);
-      alien.scale.set(0.08);
+      alien.scale.set(0.04);
       alien.smoothed = false;
       alien.anchor.setTo(-0.2, 0.5);
       //Add physics to the Alien
@@ -191,9 +191,9 @@ function phaserGame(){
       var pipeInverted = game.add.sprite(x, limInf - (alien.height * 2) - width, 'pipe-inverted');
 
       //Reduce size of the sprite
-      pipeNormal.scale.set(0.5);
+      pipeNormal.scale.set(0.3);
 
-      pipeInverted.scale.set(0.5);
+      pipeInverted.scale.set(0.3);
 
       pipeNormal.smoothed = false;
 
