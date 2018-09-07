@@ -11,6 +11,7 @@ var poleNorth;
 var time;
 var positions;
 var backButton;
+var candys;
 
 window.onload = init;//Se llama la función de carga
 
@@ -95,6 +96,9 @@ function phaserGame(){
       game.load.image('pipe-normal', 'assets/pantallaJuego/Obstaculos.png');
       game.load.image('pipe-inverted', 'assets/pantallaJuego/Obstaculos_invertido.png');
       game.load.image('back-button', 'assets/pantallaJuego/Boton_salir.png');
+      game.load.image('candy1', 'assets/pantallaJuego/Dulce1.png');
+      game.load.image('candy2', 'assets/pantallaJuego/Dulce2.png');
+      game.load.image('candy3', 'assets/pantallaJuego/Dulce3.png');
     },
 
     create: function(){
@@ -123,13 +127,13 @@ function phaserGame(){
 
       // Display the bird at the position x=100 and y=width/2
       alien = game.add.sprite(10, 10, 'alien', 5);
-      alien.scale.set(0.05);
+      alien.scale.set(0.06);
       alien.smoothed = false;
       alien.anchor.setTo(-0.2, 0.5);
 
       //back button
       button = game.add.button(10, 10, 'back-button', this.actionOnClick, this, 2, 1, 0);
-      button.scale.set(0.3);
+      button.scale.set(0.2);
 
       //Add physics to the Alien
       //Needed for: movements, gravity, collisions, etc.
@@ -147,15 +151,44 @@ function phaserGame(){
       //pipe time
       this.pipes = game.add.group();
 
+      //Candy time
+      candys = game.add.group();
+      candys.enableBody = true;
+
+      //score time
+      score = 0;
+      this.labelScore =  game.add.text(150, 10, score, {
+              font: '64px Arial',
+              fill: '#ffffff'
+            });
+
       //timer for increase levelspeed
       timer = game.time.create(false);
       timer.loop(time, function(){
         this.updateSpeed();
         this.addOnePipeRow(width);
+        this.createCandy();
 
       }, this);
       timer.start();
 
+    },
+    createCandy: function(){
+      var arrayCandys = [];
+      for (var i = 0; i < 3; i++) {
+        var tittle = 'candy' + (i+1);
+        arrayCandys.push(tittle);
+      }
+      for (var i = 0; i < 2; i++) {
+
+        var indexRandom = Math.floor(Math.random()*3 + 1);
+        var candy = candys.create(game.world.randomX, game.world.randomY, arrayCandys[indexRandom]);
+        candy.scale.setTo(0.05);
+        candy.name = 'candy' + candy;
+        candy.colliderWorldBounds = true;
+        candy.body.velocity.setTo(gameSpeed*3, 0);
+
+      }
     },
 
     actionOnClick: function(){
@@ -172,10 +205,11 @@ function phaserGame(){
       //This function is called 60 times per second
       //It contains the game's logic
 
-      //If the alien is out of the screen (too high or too low)
-      //Call the 'restartGame' function
 
       if (alien.angle < 5) alien.angle += 0.5;
+
+      //If the alien is out of the screen (too high or too low)
+      //Call the 'restartGame' function
       if(alien.y < 0 - (height/2) || alien.y > height) {
         this.restartGame();
       }
@@ -187,6 +221,10 @@ function phaserGame(){
       }
       back.x -= speedBack;
 
+      //Candy Collisions
+      game.physics.arcade.overlap(alien, candys, this.updateScore, null, this);
+
+      //Pipes collisions
       game.physics.arcade.overlap(alien, this.pipes, this.restartGame, null, this);
     },
 
@@ -218,12 +256,17 @@ function phaserGame(){
       //Game speed
       gameSpeed = -50;
 
+      score = 0;
+
+
       //Start the 'main' state, wich restart the game
       game.state.start('main');
     },
 
-    updateScore: function(){
+    updateScore: function(candy){
       score++;
+      this.labelScore.text = score;  
+
     },
 
     addOnePipeRow: function(x){
