@@ -9,32 +9,44 @@ var gameSpeed;
 var pole;
 var poleNorth;
 var time;
+var positions;
+var backButton;
+
 window.onload = init;//Se llama la función de carga
 
 /**
 * Función de carga al iniciar la ventana
 **/
 function init(){
-  width = document.documentElement.clientWidth;
-  height = document.documentElement.clientHeight;
+
+  //Disable scroll
   window.addEventListener("scroll", preventMotion, false);
+
+  //Disable zoom
   window.addEventListener("touchmove", preventMotion, false);
-  width = 800;
-  height = width*2;
-  //the default speed of the game
-  speedBack = 10;
-  //Game speed
-  gameSpeed = -50;
+
+  //Initialize width of the frame
+  width = 480;
+
+  //Initilize height of the frame
+  height = 854;
+
+  //load screen, param function and time in miliseconds
   setTimeout(loadSection, 900 );
+
+  //positions of the pipe
+  positions = [400, 410, 430, 450, 470, 490,  500, 510, 530, 550, 570, 590,  600, 610, 630, 650, 670, 690];
+
+  //Initialize de game, last but not least
   phaserGame();
+
 }
 
 /**
 * función para prevenir eventos de scroll y de zoom
 * @param event: evento a
 **/
-function preventMotion(event)
-{
+function preventMotion(event){
     window.scrollTo(0, 0);
     event.preventDefault();
     event.stopPropagation();
@@ -53,7 +65,8 @@ function loadSection(){
 * @param sectionName: nombre de la seccion que se va a mostrar
 **/
 function displaySection(sectionName){
-  event.preventDefault();
+
+  event.preventDefault(); //Disable default function
   sections = document.getElementsByTagName('section');
   for (var i = 0; i < sections.length; i++) {
 
@@ -66,10 +79,13 @@ function displaySection(sectionName){
   }
 }
 
-//Create our 'main' state that will conatin the game
 
+/**
+* Main function of the game
+**/
 function phaserGame(){
 
+  //Create our 'main' state that will conatin the game
   var mainState = {
     preload: function(){
       // This function will be executed at the beginning
@@ -78,6 +94,7 @@ function phaserGame(){
       game.load.image('background', 'assets/pantallaJuego/Fondo_para_Repetir.png');
       game.load.image('pipe-normal', 'assets/pantallaJuego/Obstaculos.png');
       game.load.image('pipe-inverted', 'assets/pantallaJuego/Obstaculos_invertido.png');
+      game.load.image('back-button', 'assets/pantallaJuego/Boton_salir.png');
     },
 
     create: function(){
@@ -90,16 +107,30 @@ function phaserGame(){
       // Set the physics system
       game.physics.startSystem(Phaser.Physics.ARCADE);
 
+      // initial time = 2secs
+      time = 3000;
+
+      //the default speed of the game
+      speedBack = 10;
+
+      //Game speed
+      gameSpeed = -50;
 
       // Display the background
       back = game.add.image(0, -400, 'background');
       back.scale.set(1);
       back.smoothed = false;
+
       // Display the bird at the position x=100 and y=width/2
       alien = game.add.sprite(10, 10, 'alien', 5);
-      alien.scale.set(0.04);
+      alien.scale.set(0.05);
       alien.smoothed = false;
       alien.anchor.setTo(-0.2, 0.5);
+
+      //back button
+      button = game.add.button(10, 10, 'back-button', this.actionOnClick, this, 2, 1, 0);
+      button.scale.set(0.3);
+
       //Add physics to the Alien
       //Needed for: movements, gravity, collisions, etc.
       game.physics.arcade.enable(alien);
@@ -116,24 +147,25 @@ function phaserGame(){
       //pipe time
       this.pipes = game.add.group();
 
-      // initial time = 2secs
-      time = 2000;
-
-      //timer for increase level
+      //timer for increase levelspeed
       timer = game.time.create(false);
       timer.loop(time, function(){
         this.updateSpeed();
-        this.addOnePipeRow(width*2);
+        this.addOnePipeRow(width);
 
       }, this);
       timer.start();
 
     },
 
+    actionOnClick: function(){
+      displaySection('index');
+    },
+
     updateSpeed: function(){
-      speedBack += 0.5;
-      gameSpeed -= 0.5;
-      time -= 0.0001;
+      speedBack += 0.1 //Background speed update;
+      gameSpeed -= 0.5; //pipes speed update
+      //time -= 0.0001; //App time to update
     },
 
     update: function(){
@@ -144,13 +176,13 @@ function phaserGame(){
       //Call the 'restartGame' function
 
       if (alien.angle < 5) alien.angle += 0.5;
-      if(alien.y < 0 - (width/2) || alien.y > width) {
+      if(alien.y < 0 - (height/2) || alien.y > height) {
         this.restartGame();
       }
 
       // Move the background
       var actual = Math.abs(back.x);
-      if(actual > (((back.width - width) - (width/2)) - (width + (width/2 )))){
+      if(actual > back.width - width){
         back.x = 0;
       }
       back.x -= speedBack;
@@ -164,7 +196,7 @@ function phaserGame(){
       // Create an animation on the alien
       var animation = game.add.tween(alien);
 
-      // Change the angle of the bird to -20° in 100 milliseconds
+      // Change the angle of the alien to -2° in 100 milliseconds
       animation.to({angle: -2}, 100);
 
       // And start the animation
@@ -173,6 +205,19 @@ function phaserGame(){
     },
     //Restart the Game
     restartGame: function(){
+      //Loose screen
+
+      //Reset gamespeed, time and background speed
+
+      // initial time = 2secs
+      time = 2000;
+
+      //the default speed of the game
+      speedBack = 10;
+
+      //Game speed
+      gameSpeed = -50;
+
       //Start the 'main' state, wich restart the game
       game.state.start('main');
     },
@@ -183,12 +228,11 @@ function phaserGame(){
 
     addOnePipeRow: function(x){
       //normal pipe
-      y = width/2;
-      var limInf = Math.floor(Math.random() * width/2) + alien.height*2;
-      var limSup = -limInf* 2;
+      var index = Math.floor(Math.random() * (positions.length - 1));
+      var limInf = positions[index];
       var pipeNormal = game.add.sprite(x, limInf, 'pipe-normal');
 
-      var pipeInverted = game.add.sprite(x, limInf - (alien.height * 2) - width, 'pipe-inverted');
+      var pipeInverted = game.add.sprite(x, limInf - width - alien.height*2.5, 'pipe-inverted');
 
       //Reduce size of the sprite
       pipeNormal.scale.set(0.3);
@@ -204,9 +248,9 @@ function phaserGame(){
 
 
       //ENable velocity
-      pipeNormal.body.velocity.x = gameSpeed*10;
+      pipeNormal.body.velocity.x = gameSpeed*3;
 
-      pipeInverted.body.velocity.x = gameSpeed*10;
+      pipeInverted.body.velocity.x = gameSpeed*3;
 
       //Enable pipe movemnt backwards
 
@@ -227,7 +271,7 @@ function phaserGame(){
   };
 
   //Initialize Phaser, and create a 400px by 490px game
-  var game = new Phaser.Game(height, width, Phaser.CANVAS);
+  var game = new Phaser.Game(width, height, Phaser.CANVAS);
   game.state.add('main', mainState);
 
   //Star the state to actually start the Game
