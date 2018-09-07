@@ -25,7 +25,7 @@ function init(){
   speedBack = 10;
   //Game speed
   gameSpeed = -50;
-  setTimeout(loadSection, 500 );
+  setTimeout(loadSection, 900 );
   phaserGame();
 }
 

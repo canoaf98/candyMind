@@ -23,16 +23,16 @@ section { display: none; }
 .ml-25 { margin-left: 25%; }
 
 #imagen_de_carga {
-	width: 480px; height: 584px;
+	width: 480px; height: 854px;
 }
 .img-backgound {
-	width: 480px; height: 584px;
+	width: 480px; height: 854px;
 }
 #instrucciones {
-	width: 480px; height: 584px;
+	width: 480px; height: 854px;
 }
 #creditos {
-	width: 480px; height: 584px;
+	width: 480px; height: 854px;
 }
 #boton_salir {
 	position:absolute;
@@ -41,3 +41,4 @@ top:1px;
 z-index:0;
 height: 77px;    
 }
+
