@@ -91,14 +91,14 @@ function phaserGame(){
     preload: function(){
       // This function will be executed at the beginning
       // That's where we load the images and sounds
-      game.load.image('alien', 'assets/pantallaJuego/Alien.png', 40, 60);
-      game.load.image('background', 'assets/pantallaJuego/Fondo_para_Repetir.png');
-      game.load.image('pipe-normal', 'assets/pantallaJuego/Obstaculos.png');
-      game.load.image('pipe-inverted', 'assets/pantallaJuego/Obstaculos_invertido.png');
-      game.load.image('back-button', 'assets/pantallaJuego/Boton_salir.png');
-      game.load.image('candy1', 'assets/pantallaJuego/Dulce1.png');
-      game.load.image('candy2', 'assets/pantallaJuego/Dulce2.png');
-      game.load.image('candy3', 'assets/pantallaJuego/Dulce3.png');
+      game.load.image('alien', 'img/pantallaJuego/Alien.png', 40, 60);
+      game.load.image('background', 'img/pantallaJuego/Fondo_para_Repetir.png');
+      game.load.image('pipe-normal', 'img/pantallaJuego/Obstaculos.png');
+      game.load.image('pipe-inverted', 'img/pantallaJuego/Obstaculos_invertido.png');
+      game.load.image('back-button', 'img/pantallaJuego/Boton_salir.png');
+      game.load.image('candy1', 'img/pantallaJuego/Dulce1.png');
+      game.load.image('candy2', 'img/pantallaJuego/Dulce2.png');
+      game.load.image('candy3', 'img/pantallaJuego/Dulce3.png');
     },
 
     create: function(){
@@ -265,7 +265,7 @@ function phaserGame(){
 
     updateScore: function(candy){
       score++;
-      this.labelScore.text = score;  
+      this.labelScore.text = score;
 
     },
 
@@ -320,3 +320,44 @@ function phaserGame(){
   //Star the state to actually start the Game
   game.state.start('main');
 }
+
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+var app = {
+    // Application Constructor
+    initialize: function() {
+        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    },
+
+    // deviceready Event Handler
+    //
+    // Bind any cordova events here. Common events are:
+    // 'pause', 'resume', etc.
+    onDeviceReady: function() {
+        this.receivedEvent('deviceready');
+        init();
+    },
+
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+
+    }
+};
+
+app.initialize();

@@ -8,35 +8,35 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="css/app.css">
   <script src="js/phaser.min.js" charset="utf-8"></script>
-  <script src="js/app.js" charset="utf-8"></script>
+  <script src="js/main.js" charset="utf-8"></script>
   <!-- <title>Candy Mind</title> -->
 </head>
 <body>
   <section id="carga"><!-- Carga -->
 
-    <img id="imagen_de_carga" alt="full screen background image" src="assets/Cargando.gif"/ style="width: 480; height: 584; max-width: 150vh; max-height: 150vh; overflow: hidden;">
+    <img id="imagen_de_carga" alt="full screen background image" src="img/Cargando.gif"/ style="width: 480; height: 584; max-width: 150vh; max-height: 150vh; overflow: hidden;">
   </section>
   <section id="index"><!-- index -->
     <title>Candy Mind</title>
     <div class="app-container">
       <div class="image-backgound">
-        <img class="img-responsive" id="image-background" src="assets/menu/Fondo_menu.gif" alt="" style="width: 102.5%; height: 102.5vh; max-width: 150vh; max-height: 150vh; overflow: hidden;">
+        <img class="img-responsive" id="image-background" src="img/menu/Fondo_menu.gif" alt="" style="width: 102.5%; height: 102.5vh; max-width: 150vh; max-height: 150vh; overflow: hidden;">
       </div>
       <div class="container-fluid"><!-- contenedor fondo -->
         <div class="row btn-container"><!-- contedor de botones -->
           <div class="button-play-div"><!-- boton jugar -->
             <a href="" onclick="displaySection('juego')" class="ml-25">
-              <img src="assets/menu/Empezar_boton.png" alt="" style="width: 50%; height: 100%; overflow: hidden;">
+              <img src="img/menu/Empezar_boton.png" alt="" style="width: 50%; height: 100%; overflow: hidden;">
             </a>
           </div>
           <div class="button-play-div"><!-- boton jugar -->
             <a href="" onclick="displaySection('instrucciones')" class="ml-25">
-              <img src="assets/menu/Instrucciones_boton.png" alt="" style="width: 50%; height: 100%; overflow: hidden;">
+              <img src="img/menu/Instrucciones_boton.png" alt="" style="width: 50%; height: 100%; overflow: hidden;">
             </a>
           </div>
           <div class="button-play-div"><!-- boton jugar -->
             <a href="" onclick="displaySection('creditos')" class="ml-25">
-              <img src="assets/menu/Creditos_boton.png" alt="" style="width: 50%; height: 100%; overflow: hidden;">
+              <img src="img/menu/Creditos_boton.png" alt="" style="width: 50%; height: 100%; overflow: hidden;">
             </a>
           </div>
         </div>
@@ -47,13 +47,13 @@
     <title>Instrucciones</title>
     <div class="container-fluid">
       <a href="" onclick="displaySection('index')">
-        <img id="boton_salir" src="assets/pantallaCreditos/Boton_Salir_Creditos.png" >
+        <img id="boton_salir" src="img/pantallaCreditos/Boton_Salir_Creditos.png" >
       </a>
-      <img id="instrucciones" src="assets/pantallaInstrucciones/Instrucciones.gif" alt="">
+      <img id="instrucciones" src="img/pantallaInstrucciones/Instrucciones.gif" alt="">
       <div class="row">
         <div class="col-12">
           <a href="#" onclick="displaySection('index')">
-            <img src="assets/pantallaInstrucciones/Boton_Salir.png" alt="">
+            <img src="img/pantallaInstrucciones/Boton_Salir.png" alt="">
           </a>
         </div>
       </div>
@@ -64,13 +64,13 @@
 
     <div class="container-fluid">
       <a href="" onclick="displaySection('index')">
-        <img id="boton_salir" src="assets/pantallaCreditos/Boton_Salir_Creditos.png" >
+        <img id="boton_salir" src="img/pantallaCreditos/Boton_Salir_Creditos.png" >
       </a>
-      <img id="creditos" src="assets/pantallaCreditos/creditosdeljuego.gif" alt="">
+      <img id="creditos" src="img/pantallaCreditos/creditosdeljuego.gif" alt="">
       <div class="row">
         <div class="col-12">
           <a href="#" onclick="displaySection('index')">
-            <img src="assets/pantallaCreditos/Boton_Salir_Creditos.png" alt="">
+            <img src="img/pantallaCreditos/Boton_Salir_Creditos.png" alt="">
           </a>
         </div>
       </div>
