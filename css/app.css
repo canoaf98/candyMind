@@ -21,3 +21,18 @@ section { display: none; }
 
 /* line 47, ../sass/app.scss */
 .ml-25 { margin-left: 25%; }
+
+/* line 51, ../sass/app.scss */
+#imagen_de_carga { width: 480px; height: 854px; }
+
+/* line 55, ../sass/app.scss */
+.img-backgound { width: 480px; height: 854px; }
+
+/* line 59, ../sass/app.scss */
+#instrucciones { width: 480px; height: 854px; }
+
+/* line 63, ../sass/app.scss */
+#creditos { width: 480px; height: 854px; }
+
+/* line 67, ../sass/app.scss */
+#boton_salir { position: absolute; z-index: 0; height: 77px; }
