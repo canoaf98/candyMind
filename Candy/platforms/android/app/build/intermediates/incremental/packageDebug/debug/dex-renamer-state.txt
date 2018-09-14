@@ -1,0 +1,4 @@
+#Fri Sep 14 09:05:54 COT 2018
+base.0=E\:\\Programs\\candyMind\\Candy\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+renamed.0=classes.dex
+file.0=E\:\\Programs\\candyMind\\Candy\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex
