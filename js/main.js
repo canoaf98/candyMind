@@ -13,7 +13,7 @@ var positions;
 var backButton;
 var candys;
 
-window.onload = init;//Se llama la función de carga
+//window.onload = init;//Se llama la función de carga
 
 /**
 * Función de carga al iniciar la ventana
