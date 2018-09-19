@@ -26,13 +26,13 @@ section { display: none; }
 #imagen_de_carga { width: 480px; height: 854px; }
 
 /* line 55, ../sass/app.scss */
-.img-backgound { width: 480px; height: 854px; }
+.img-backgound { width: 400px; height: 750px; }
 
 /* line 59, ../sass/app.scss */
-#instrucciones { width: 480px; height: 854px; }
+#instrucciones { width: 400px; height: 750px; }
 
 /* line 63, ../sass/app.scss */
-#creditos { width: 480px; height: 854px; }
+#creditos { width: 400px; height: 750px; }
 
 /* line 67, ../sass/app.scss */
 #boton_salir { position: absolute; z-index: 0; height: 77px; }
