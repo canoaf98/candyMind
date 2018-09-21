@@ -27,7 +27,7 @@ function init(){
   window.addEventListener("touchmove", preventMotion, false);
 
   //Initialize width of the frame
-  width = 480;
+  width = 580;
 
   //Initilize height of the frame
   height = 854;
@@ -147,6 +147,10 @@ function phaserGame(){
         Phaser.Keyboard.SPACEBAR
       );
       spaceKey.onDown.add(this.jump, this);
+
+
+      //touchButton
+      game.input.onDown.add(this.jump, this)
 
       //pipe time
       this.pipes = game.add.group();
