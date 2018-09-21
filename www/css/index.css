@@ -29,10 +29,10 @@ section { display: none; }
 .img-backgound { width: 70vh; height: 100vh; }
 
 /* line 59, ../sass/app.scss */
-#instrucciones { width: 67vh; height: 100vh;}
+#instrucciones { width: 58vh; height: 100vh;}
 
 /* line 63, ../sass/app.scss */
-#creditos { width: 67vh; height: 100vh;}
+#creditos { width: 58vh; height: 100vh;}
 
 /* line 67, ../sass/app.scss */
-#boton_salir { position: absolute; z-index: 0; height: 77px; }
+#boton_salir { position: absolute; z-index: 0; height: 58px; }
