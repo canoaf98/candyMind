@@ -14,7 +14,7 @@ section { display: none; }
 .app-container { position: relative; }
 
 /* line 31, ../sass/app.scss */
-.img-backgound { position: relative; z-index: 50; }
+.img-backgound { position: relative; z-index: 50; /  max-width: 100%; max-height: 100%; }
 
 /* line 36, ../sass/app.scss */
 .btn-container { top: 50%; position: absolute; z-index: 100; }
@@ -23,16 +23,16 @@ section { display: none; }
 .ml-25 { margin-left: 25%; }
 
 /* line 51, ../sass/app.scss */
-#imagen_de_carga { width: 480px; height: 854px; }
+#imagen_de_carga {max-width: 100%; max-height: 100%; }
 
 /* line 55, ../sass/app.scss */
-.img-backgound { width: 400px; height: 750px; }
+.img-backgound { max-width: 92%; max-height: 100%;}
 
 /* line 59, ../sass/app.scss */
-#instrucciones { width: 400px; height: 750px; }
+#instrucciones { max-width: 97%; max-height: 100%; }
 
 /* line 63, ../sass/app.scss */
-#creditos { width: 400px; height: 750px; }
+#creditos { max-width: 72%; max-height: 100%;}
 
 /* line 67, ../sass/app.scss */
 #boton_salir { position: absolute; z-index: 0; height: 77px; }
