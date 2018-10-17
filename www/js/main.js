@@ -108,9 +108,6 @@ function phaserGame(){
       // Change the background color of the game to blue
       //  game.stage.backgroundColor = '#71c5cf';
 
-      // Set the physics system
-      game.physics.startSystem(Phaser.Physics.ARCADE);
-
       // initial time = 2secs
       time = 3000;
 
@@ -119,6 +116,18 @@ function phaserGame(){
 
       //Game speed
       gameSpeed = -50;
+
+      // Set the physics system
+      game.physics.startSystem(Phaser.Physics.P2JS);
+
+      game.physics.p2.setImpactEvents(true);
+      game.physics.p2.restitution = 0.8;
+
+      var playerColiisionGroup = game.physics.p2.createCollisionGroup();
+      var candyCollisionGroup = game.physics.p2.createCollisionGroup();
+      var pipeCollisionGroup = game.physics.p2.createCollisionGroup();
+
+      game.physics.p2.updateBoundsCollisionGroup();
 
       // Display the background
       back = game.add.image(0, -400, 'background');
@@ -130,6 +139,10 @@ function phaserGame(){
       alien.scale.set(0.06);
       alien.smoothed = false;
       alien.anchor.setTo(-0.2, 0.5);
+      game.physics.enable(alien, false);
+      alien.body.setCollisionGroup(playerColiisionGroup);
+      alien.body.collides(candyCollisionGroup, hitCandy, this);
+      game.camera.follow(alien);
 
       //back button
       button = game.add.button(10, 10, 'back-button', this.actionOnClick, this, 2, 1, 0);
@@ -137,10 +150,10 @@ function phaserGame(){
 
       //Add physics to the Alien
       //Needed for: movements, gravity, collisions, etc.
-      game.physics.arcade.enable(alien);
+      //game.physics.arcade.enable(alien);
 
       // Add gravity to the bird to make it fall
-      alien.body.gravity.y = 1000;
+      //alien.body.gravity.y = 1000;
 
       //Call the 'jump' function when the spacekey is hit
       var spaceKey = game.input.keyboard.addKey(
@@ -154,14 +167,17 @@ function phaserGame(){
 
       //pipe time
       this.pipes = game.add.group();
+      this.pipes.enableBody = true;
+      this.pipes.physicsBodyType = Phaser.Physics.P2JS;
 
       //Candy time
-      candys = game.add.group();
-      candys.enableBody = true;
+      this.candys = game.add.group();
+      this.candys.enableBody = true;
+      this.candys.physicsBodyType = Phaser.Physics.P2JS;
 
       //score time
       score = 0;
-      this.labelScore =  game.add.text(150, 10, score, {
+      this.labelScore =  game.add.text(150, 10, "Score: " + score, {
               font: '64px Arial',
               fill: '#ffffff'
             });
@@ -177,6 +193,10 @@ function phaserGame(){
       timer.start();
 
     },
+    hitCandy: function(body1, body2){
+      body2.sprite.alpha -= 1;
+    },
+
     createCandy: function(){
       var arrayCandys = [];
       for (var i = 0; i < 3; i++) {
@@ -191,6 +211,9 @@ function phaserGame(){
         candy.name = 'candy' + candy;
         candy.colliderWorldBounds = true;
         candy.body.velocity.setTo(gameSpeed*3, 0);
+
+        candy.body.setCollisionGroup(candyCollisionGroup);
+        candy.body.collides([candyCollisionGroup, pipeCollisionGroup, playerColiisionGroup])
 
       }
     },
@@ -277,9 +300,9 @@ function phaserGame(){
       //normal pipe
       var index = Math.floor(Math.random() * (positions.length - 1));
       var limInf = positions[index];
-      var pipeNormal = game.add.sprite(x, limInf, 'pipe-normal');
+      var pipeNormal = pipes.create(x, limInf, 'pipe-normal');
 
-      var pipeInverted = game.add.sprite(x, limInf - width - alien.height*2.5, 'pipe-inverted');
+      var pipeInverted = pipes.create(x, limInf - width - alien.height*2.5, 'pipe-inverted');
 
       //Reduce size of the sprite
       pipeNormal.scale.set(0.3);
@@ -290,20 +313,14 @@ function phaserGame(){
 
       pipeInverted.smoothed = false;
 
-      //Enable game physics
-      game.physics.arcade.enable([pipeNormal, pipeInverted]);
-
-
       //ENable velocity
       pipeNormal.body.velocity.x = gameSpeed*3;
 
       pipeInverted.body.velocity.x = gameSpeed*3;
 
       //Enable pipe movemnt backwards
-
-      this.pipes.add(pipeInverted);
-
-      this.pipes.add(pipeNormal);
+      pipeNormal.body.setCollisionGroup(pipeCollisionGroup);
+      pipeInverted.body.setCollisionGroup(pipeCollisionGroup);
 
       pipeNormal.checkWorldBounds = true;
       pipeNormal.outOfBoundsKill = true;
